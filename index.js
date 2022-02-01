@@ -1,5 +1,5 @@
 // @ts-check
 
-import half from './src/half.js';
+import makeRouter from './src/router.js';
 
-export default half;
+export default makeRouter;
