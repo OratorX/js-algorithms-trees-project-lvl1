@@ -7,8 +7,16 @@ const routes = [
     handler: () => 'courses!',
   },
   {
-    path: '/courses/basics',
-    handler: () => 'basics',
+    path: '/courses/:id',
+    handler: () => 'course!',
+  },
+  {
+    path: '/courses/:course_id/exercises/:id',
+    handler: () => 'exercise!',
+  },
+  {
+    path: '/courses/:course_id/exercises/:exercise_id/task/:task_id',
+    handler: () => 'task!',
   },
 ];
 
@@ -19,7 +27,19 @@ test('routerPlain', () => {
 });
 
 test('routerHierarchie', () => {
-  expect(router.serve('/courses/basics').handler()).toBe('basics');
+  expect(router.serve('/courses/basics').handler()).toBe('course!');
+});
+
+test('routerPlaceholder', () => {
+  expect(router.serve('/courses/php_trees').handler()).toBe('course!');
+});
+
+test('routerTwoPlaceholders', () => {
+  expect(router.serve('/courses/166/exercises/15').handler()).toBe('exercise!');
+});
+
+test('routerThreePlaceholders', () => {
+  expect(router.serve('/courses/166/exercises/15/task/4').handler()).toBe('task!');
 });
 
 test('routerError', () => {

@@ -9,13 +9,18 @@ env:
   node: true
   es2020: true
 
+parser: "@babel/eslint-parser"
+
 extends:
   - 'airbnb-base'
   - 'plugin:jest/recommended'
 
+
 parserOptions:
   ecmaVersion: 11
   sourceType: module
+  requireConfigFile: false
+
 
 rules:
   no-console: 0
